@@ -3,7 +3,7 @@ version: '3'
 services:
   postgres:
     build:
-      context: ./Database
+      context: ./database-postgresql
       dockerfile: Dockerfile
     container_name: postgres-db
     restart: always
@@ -14,7 +14,7 @@ services:
 
   backend:
     build:
-      context: ./flask-backend
+      context: ./backend-flask
       dockerfile: Dockerfile
     ports:
       - "5000:5000"
@@ -25,7 +25,7 @@ services:
 
   frontend:
     build:
-      context: ./react-frontend
+      context: ./frontend-react
       dockerfile: Dockerfile
     ports:
       - "3000:3000"
@@ -33,6 +33,20 @@ services:
       - backend
     networks:
       - 3-tier-app_network
+
+  nginx:
+    build:
+      context: ./reverse-proxy-nginx
+      dockerfile: Dockerfile
+    container_name: nginx-reverse-proxy
+    restart: always
+    ports:
+      - "80:80"
+    networks:
+      - 3-tier-app_network
+    depends_on:
+      - backend
+      - frontend
 
 networks:
   3-tier-app_network:
