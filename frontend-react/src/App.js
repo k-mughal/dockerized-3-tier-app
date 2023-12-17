@@ -14,8 +14,12 @@ function App() {
   
   const fetchData = async () => {
     try {
-      //const response = await fetch('http://127.0.0.1:5000/customers-list');
-      const response = await fetch('http://127.0.0.1:80/customers-list');
+     // works without nginx routing
+     // const response = await fetch('http://localhost:5000/customers-list');
+     
+     // Nginx routing
+      const response = await fetch('http://localhost:80/customers-list');
+     
       const jsonData = await response.json();
   
       console.log('API Response:', jsonData);
@@ -34,8 +38,12 @@ function App() {
  
   const handleRegister = async () => {
     try {
-      //const response = await fetch('http://127.0.0.1:5000/create-customer', {
-        const response = await fetch('http://127.0.0.1:80/create-customer', {
+      // works without nginx routing
+      //const response = await fetch('http://localhost:5000/create-customer', {
+      
+      //Nginx routing
+      const response = await fetch('http://localhost:80/create-customer', {
+      
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
