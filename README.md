@@ -15,7 +15,7 @@ installed.
   <img src="https://github.com/k-mughal/Ansible/assets/18217530/bfaa523b-8e34-42fa-8a55-bfe5712d9cdb">
 </p>
 
-## How it use:
+## How to use:
 - Clone this repo to your workspace
 
 ```
