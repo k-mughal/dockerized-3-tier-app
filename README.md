@@ -11,3 +11,22 @@ When a request from an external user hits the Nginx web server on port 80, the r
 <p align="center">
   <img src="https://github.com/k-mughal/Ansible/assets/18217530/bfaa523b-8e34-42fa-8a55-bfe5712d9cdb">
 </p>
+
+## How it use:
+- Close this repo to your workspace
+
+```
+https://github.com/k-mughal/dockerized-3-tier-app.git
+```
+
+
+- To execute run the following command
+
+```
+docker-compose up --build
+```
+- To stop the application the run following command
+
+```
+docker-compose down
+```
