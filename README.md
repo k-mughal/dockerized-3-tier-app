@@ -16,7 +16,7 @@ installed.
 </p>
 
 ## How it use:
-- Close this repo to your workspace
+- Clone this repo to your workspace
 
 ```
 https://github.com/k-mughal/dockerized-3-tier-app.git
