@@ -11,16 +11,21 @@ function App() {
   useEffect(() => {
     fetchData();
   }, []);
-  
+
+
   const fetchData = async () => {
     try {
-     // works without nginx routing
+     // works without nginx routing on local machine
      // const response = await fetch('http://localhost:5000/customers-list');
      
-     // Nginx routing
-      const response = await fetch('http://localhost:80/customers-list');
+     // Nginx routing works on local machine
+     //const response = await fetch('http://localhost:80/customers-list');
      
-      const jsonData = await response.json();
+     // API URL dynamically based on the current domain
+      const apiUrl = `http://${window.location.hostname}:80/customers-list`;
+      const response = await fetch(apiUrl);
+      
+const jsonData = await response.json();
   
       console.log('API Response:', jsonData);
   
@@ -42,7 +47,7 @@ function App() {
       //const response = await fetch('http://localhost:5000/create-customer', {
       
       //Nginx routing
-      const response = await fetch('http://localhost:80/create-customer', {
+        const response = await fetch('http://${window.location.hostname}:80/create-customer', {
       
         method: 'POST',
         headers: {
