@@ -22,6 +22,7 @@ function App() {
      //const response = await fetch('http://localhost:80/customers-list');
      
      // API URL dynamically based on the current domain
+     
       const apiUrl = `http://${window.location.hostname}:80/customers-list`;
       const response = await fetch(apiUrl);
       
