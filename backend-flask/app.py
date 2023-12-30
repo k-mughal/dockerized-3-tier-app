@@ -25,19 +25,23 @@ aurora_db_name = os.getenv('DB_NAME')
 aurora_cluster_arn = os.getenv('CLUSTER_ARN')
 aurora_secret_arn = os.getenv('SECRET_ARN')
 
-@app.route('/getPerson')  # API 1 - getPerson
-def getPerson():
-    #personId = request.args.get('personId')
-    #response = callDbWithStatement("SELECT * FROM Persons WHERE personId='" + str(personId) + "'")
+@app.route('/getPersons')  # Modified route name for clarity
+def getPersons():
     response = callDbWithStatement("SELECT * FROM users")
-    person = {}
     records = response['records']
+    
+    persons = []
+    
     for record in records:
-        person['username'] = record[0]['stringValue']
-        person['email'] = record[1]['stringValue']
-        person['password'] = record[2]['stringValue']
-    print(person)
-    return jsonify(person)
+        person = {
+            'username': record[1]['stringValue'],
+            'email': record[2]['stringValue'],
+            'password': record[3]['stringValue']
+        }
+        persons.append(person)
+    
+    print(persons)
+    return jsonify(persons)
 
 
 

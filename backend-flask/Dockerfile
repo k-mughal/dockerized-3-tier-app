@@ -10,7 +10,8 @@ COPY . /app
 
 EXPOSE 8081 
 
-ENTRYPOINT [ "python" ]
+#ENTRYPOINT [ "python" ]
 
 #CMD [ "-u", "app.py" ]
 CMD ["python", "app.py", "--host=0.0.0.0", "--port=5000"]
+
