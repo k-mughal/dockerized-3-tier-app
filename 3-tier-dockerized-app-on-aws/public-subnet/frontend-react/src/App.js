@@ -1,4 +1,5 @@
 import { useEffect, useState } from 'react';
+import './App.css';
 
 function App() {
   const [users, setUsers] = useState([]);
@@ -19,9 +20,9 @@ function App() {
       const jsonData = await response.json();
       console.log('API Response:', jsonData);
 
-      if (jsonData.Customers && Array.isArray(jsonData.Customers)) {
-        // Assuming jsonData.Customers is an array
-        setUsers(jsonData.Customers);
+      if (Array.isArray(jsonData)){
+        // jsonData is already an array
+        setUsers(jsonData);
       } else {
         console.error('Invalid data format:', jsonData);
       }

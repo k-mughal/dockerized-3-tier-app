@@ -54,7 +54,7 @@ def createPerson():
     password = request_data['password']
     callDbWithStatement("INSERT INTO users(username, email, password) VALUES ('"
                         + username + "', '" + email + "', '" + password + "');")
-    return "ok"
+    return jsonify({'status': 'ok'})
 
 def callDbWithStatement(statement):
     response = rds_data.execute_statement(
