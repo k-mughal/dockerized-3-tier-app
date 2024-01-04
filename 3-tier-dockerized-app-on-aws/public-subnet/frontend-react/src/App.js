@@ -1,6 +1,4 @@
-
 import { useEffect, useState } from 'react';
-import './App.css';
 
 function App() {
   const [users, setUsers] = useState([]);
@@ -15,21 +13,12 @@ function App() {
 
   const fetchData = async () => {
     try {
-     // works without nginx routing on local machine
-     // const response = await fetch('http://localhost:5000/customers-list');
-     
-     // Nginx routing works on local machine
-     //const response = await fetch('http://localhost:80/customers-list');
-     
-     // API URL dynamically based on the current domain
-     
-      const apiUrl = `http://${window.location.hostname}:80/customers-list`;
+
+      const apiUrl = `http://${window.location.hostname}:80/getPersons`;
       const response = await fetch(apiUrl);
-      
-const jsonData = await response.json();
-  
+      const jsonData = await response.json();
       console.log('API Response:', jsonData);
-  
+
       if (jsonData.Customers && Array.isArray(jsonData.Customers)) {
         // Assuming jsonData.Customers is an array
         setUsers(jsonData.Customers);
@@ -40,16 +29,14 @@ const jsonData = await response.json();
       console.error('Error', error);
     }
   };
-  
- 
+
+
   const handleRegister = async () => {
     try {
-      // works without nginx routing
-      //const response = await fetch('http://localhost:5000/create-customer', {
-      
-      //Nginx routing
-        const response = await fetch('http://${window.location.hostname}:80/create-customer', {
-      
+
+
+        const response = await fetch(`http://${window.location.hostname}:80/createPerson`, {
+
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
@@ -98,10 +85,9 @@ const jsonData = await response.json();
         ))}
       </ul>
 
-  
+
     </div>
   );
 }
 
 export default App;
-

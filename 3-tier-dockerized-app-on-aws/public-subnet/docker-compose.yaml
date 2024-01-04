@@ -24,4 +24,9 @@ services:
       - 3-tier-app_network
     depends_on:
       - frontend
+
+networks:
+  3-tier-app_network:
+    driver: bridge
+
    

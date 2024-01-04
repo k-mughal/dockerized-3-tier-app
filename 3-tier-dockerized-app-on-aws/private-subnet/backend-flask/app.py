@@ -1,7 +1,7 @@
 from flask import Flask, request, jsonify
 import os
 from dotenv import load_dotenv
-import boto3 
+import boto3
 from botocore.config import Config
 
 app = Flask(__name__)
@@ -25,22 +25,27 @@ aurora_db_name = os.getenv('DB_NAME')
 aurora_cluster_arn = os.getenv('CLUSTER_ARN')
 aurora_secret_arn = os.getenv('SECRET_ARN')
 
-@app.route('/getPersons')  
-def getPerson():
-
+@app.route('/getPersons')  # Modified route name for clarity
+def getPersons():
     response = callDbWithStatement("SELECT * FROM users")
-    person = {}
     records = response['records']
+
+    persons = []
+
     for record in records:
-        person['username'] = record[0]['stringValue']
-        person['email'] = record[1]['stringValue']
-        person['password'] = record[2]['stringValue']
-    print(person)
-    return jsonify(person)
+        person = {
+            'username': record[1]['stringValue'],
+            'email': record[2]['stringValue'],
+            'password': record[3]['stringValue']
+        }
+        persons.append(person)
+
+    print(persons)
+    return jsonify(persons)
 
 
 
-@app.route('/createPerson', methods=['POST']) 
+@app.route('/createPerson', methods=['POST'])  # API 2 - createPerson
 def createPerson():
     request_data = request.get_json()
     #personId = str(request_data['personId'])
@@ -65,5 +70,3 @@ def callDbWithStatement(statement):
 
 if __name__ == '__main__':
     app.run(threaded=True, host='0.0.0.0')
-    
-    
