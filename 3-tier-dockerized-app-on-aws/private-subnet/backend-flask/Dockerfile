@@ -1,16 +1,19 @@
-FROM python:3.7-slim
+FROM python:3.8-slim
 
-COPY ./requirements.txt /app/requirements.txt
-
+# working directory inside the container
 WORKDIR /app
 
-RUN pip install -r requirements.txt
+# Copy the all local requirements to the container
+COPY requirements.txt .
 
-COPY . /app
+# Install dependencies
+RUN pip install --no-cache-dir -r requirements.txt
 
-EXPOSE 8081 
+# Copy the local application code to the created container
+COPY . .
 
-ENTRYPOINT [ "python" ]
+# Expose the port where Flask app will run
+EXPOSE 5000
 
-#CMD [ "-u", "app.py" ]
+# Command to run the application
 CMD ["python", "app.py", "--host=0.0.0.0", "--port=5000"]
