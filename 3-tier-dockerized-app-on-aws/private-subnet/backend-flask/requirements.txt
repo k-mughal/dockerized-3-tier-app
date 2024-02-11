@@ -20,3 +20,4 @@ SQLAlchemy==2.0.23
 typing_extensions
 urllib3
 Werkzeug
+itsdangerous==2.1.2
