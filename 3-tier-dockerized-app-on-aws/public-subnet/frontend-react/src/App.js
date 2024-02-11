@@ -48,7 +48,7 @@ const jsonData = await response.json();
       //const response = await fetch('http://localhost:5000/create-customer', {
       
       //Nginx routing
-        const response = await fetch('http://${window.location.hostname}:80/create-customer', {
+        const response = await fetch(`http://${window.location.hostname}:80/create-customer`, {
       
         method: 'POST',
         headers: {
