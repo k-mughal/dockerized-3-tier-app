@@ -1,10 +1,9 @@
-# Get latest AMI ID for Amazon Linux2 OS
-data "aws_ami" "amzlinux2" { # data.aws_ami.amzlinux2.id
+# Get latest AMI ID for Ubuntu linux OS
+data "aws_ami" "ubuntu" { # data.aws_ami.ubuntu.id
   most_recent = true
   owners = [ "amazon" ]
   filter {
     name = "name"
-    #values = [ "amzn2-ami-hvm-*-gp2" ]
     values = [ "ubuntu/images/hvm-ssd/ubuntu-jammy-22.04-amd64-server-*" ]
   }
   filter {
@@ -20,3 +19,5 @@ data "aws_ami" "amzlinux2" { # data.aws_ami.amzlinux2.id
     values = [ "x86_64" ]
   }
 }
+
+
