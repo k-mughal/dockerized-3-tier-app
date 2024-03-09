@@ -36,10 +36,9 @@ resource "aws_security_group" "vpc-web" {
 
 # Create Security Group - SSH Traffic
 resource "aws_security_group" "vpc-ssh" { # aws_security_group.vpc-ssh.id
-                                          # this id will be used in c5-ec2instance.tf
+                                         
   name        = "SG-BE-SSH"
   description = "SG - Port 22 allowed"
-  # vpc_id = aws_vpc.main.id # it will be default vpc if no vpc id is defined
   vpc_id = aws_vpc.my3tier_vpc.id
   ingress {
     description = "Allow Port 22"

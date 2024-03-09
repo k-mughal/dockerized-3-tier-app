@@ -7,7 +7,7 @@ resource "aws_db_instance" "maindb" {
   storage_type            = "gp3"
   db_name                 = "mydb"
   username                =  "admin123"         #local.db_creds.username
-  password                =  "mypass123456*"    #local.db_creds.password
+  password                =  "mypass123"    #local.db_creds.password
   db_subnet_group_name    = aws_db_subnet_group.db_subnet_group.name
   vpc_security_group_ids  = [aws_security_group.db-sg.id]
   parameter_group_name    = "default.postgres15"
